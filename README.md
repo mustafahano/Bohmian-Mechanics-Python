@@ -16,7 +16,7 @@ This repository contains my numerical implementations of fundamental quantum mec
 
 ### 1. Spatial Discretization & Finite Differences (`01_finite_differences.py`)
 * Implements second-order central finite difference operators for first ($\partial_x$) and second ($\partial_x^2$) spatial derivatives using vectorized NumPy slicing.
-* Benchmarks numerical derivatives against analytical solutions for a Gaussian wave packet $f(x) = e^{-x^2}$ to verify interior truncation error ($\mathcal{O}(\Delta x^2)$).
+* Benchmarks numerical derivatives against analytical solutions for a Gaussian wave packet $f(x) = e^{-x^2}$ to verify interior truncation error, which scales as $\mathcal{O}(\Delta x^2)$.
 
 ![Finite Differences](figures/finite_differences.png)
 
@@ -29,7 +29,9 @@ This repository contains my numerical implementations of fundamental quantum mec
 ### 3. Quantum Tunneling & Bohmian Trajectories (`03_bohmian_tunneling.py`)
 * Evolves a Gaussian wave packet incident on a rectangular potential barrier ($V_0 = 5.2 > E_{\text{kin}} = 4.5$) using the unconditionally stable, unitary **Crank–Nicolson** scheme (`scipy.linalg.solve_banded`).
 * Integrates the **Bohmian guiding equation** simultaneously at each time step:
-  $$\frac{dx(t)}{dt} = v(x,t) = \frac{\hbar}{m} \operatorname{Im}\left(\frac{\partial_x \psi(x,t)}{\psi(x,t)}\right)$$
+
+$$\frac{dx(t)}{dt} = v(x,t) = \frac{\hbar}{m} \text{Im}\left(\frac{\partial_x \psi(x,t)}{\psi(x,t)}\right)$$
+
 * Visualizes probability density evolution $|\psi(x,t)|^2$ alongside non-crossing deterministic particle trajectories, demonstrating trajectory bifurcation at the barrier ($T \approx 19.1\%$).
 
 ![Bohmian Tunneling](figures/bohmian_tunneling.png)
